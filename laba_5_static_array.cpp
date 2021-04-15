@@ -4,32 +4,62 @@ int main()
 {
 	setlocale(0, "ru");
 
+	const int N = 10;
+
 	//создание массива////////////////////
-	int rows;
-	cout << "Введите n(количество строк(столбцов)): ";
+	double arr[N][N];
+
+	//ввод размерности массива////////////////////
+	int n;
+	cout << "Введите n (количество строк(столбцов)): ";
 	while (true)
 	{
-		rows = getnum();
-		if (rows <= 0)
+		n = getnum();
+		if (n <= 0)
 			cout << "Количество строк (столбцов) должно быть больше 0. Повторите ввод." << endl;
 		else
 			break;
 	}
-	double arr[10][10];
+
 	
 	//заполнение массива//////////////////
-	fillmass(arr, rows);
+	cout << endl << "Введите элементы массива: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << "[" << i << "][" << j << "] ";
+			arr[i][j] = getnum(); // * (arr + i*N + j)
+		}
+	}
+
 	//вывод изначальной////////////////////////////////////
-	cout << "Было: " << endl;
-	showmassive(arr, rows);
+	cout << endl << "Было: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << setw(7) << arr[i][j] << "\t";
+		}
+		cout << endl;
+	}
 
 	//изменение по варианту///////////////
-	changemass(arr, rows);
-	
-	//вывод изменённой////////////////////////////////////
-	cout << "Стало: " << endl;
-	showmassive(arr, rows);
+	for (int i = 0; i < n; i++)
+		arr[i][n - i - 1] = 0;
 
+	//вывод изменённой////////////////////////////////////
+	cout << endl << "Стало: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << setw(7) << arr[i][j] << "\t";
+		}
+		cout << endl;
+	}
+
+	cout << endl;
 	system("pause");
 	return 0;
 }

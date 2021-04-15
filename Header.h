@@ -4,66 +4,20 @@
 #include <iostream>
 #include <iomanip>
 #include <regex>
+#include <conio.h>
+#include <Windows.h>
+
 using namespace std;
 
-void showmassive(double arr[10][10], int rows)//вывод
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < rows; j++)
-		{
-			cout << arr[i][j] << "\t";
-		}
-		cout << endl;
-	}
-}
 double getnum()//проверка ввода
 {
-	double a;
-	bool cor = 0;
-	string as;
-	cor = 0;
-	while (!cor)
-	{
-		cin >> as;
-		int i;
-		for (i = 0; i < as.length(); i++)
-		{
-			if ((int(as[i]) > 47 || int(as[i]) < 43) && (int(as[i]) < 48 || int(as[i]) > 57))//-_._,_0-9
-				break;
-		}
-		if (i == as.length())
-		{
-			cor = 1;
-			as = regex_replace(as, regex(","), ".");
-			a = stod(as);
-		}
-		else
-		{
-			cin.clear();
-			cin.ignore(32767, '\n');
-			cout << "Не верный ввод!!! Введите число : ";
-		}
+	double value;
+	while (!(cin >> value)) 
+	{ //Since value is a double, (cin >> value) will be true only if the user enters a valid value that can be put inside a double
+		cout << "Please enter a valid value (use '.' instead ','):" << endl;
+		cin.clear();
+		cin.ignore(32767, '\n');
 	}
-	cin.seekg(0, ios::end);
-	cin.clear();
-	return a;
-}
-
-void fillmass(double arr[10][10], int rows)//заполнение
-{
-	cout << "Введите элементы массива: " << endl;
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < rows; j++)
-		{
-			cin >> arr[i][j];
-		}
-	}
-}
-
-void changemass(double (&arr)[10][10], int rows)//изменение
-{
-	for (int i = 0; i < rows; i++)
-		arr[i][rows - i - 1] = 0;
+	cin.ignore(32767, '\n');
+	return value;
 }
