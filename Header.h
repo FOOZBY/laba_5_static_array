@@ -9,7 +9,7 @@
 
 using namespace std;
 
-double getnum()//ïðîâåðêà ââîäà
+double getnum()//Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð²Ð²Ð¾Ð´Ð°
 {
 	double value;
 	while (!(cin >> value)) 
